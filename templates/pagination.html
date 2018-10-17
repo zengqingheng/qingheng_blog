@@ -1,0 +1,15 @@
+<div id="pagination">
+    <ul id="pagination-flickr">
+    {% if Article_list.has_previous %}
+    <li class="previous"><a href="?page={{ Article_list.previous_page_number }}{% if request.GET.tag %}&tag={{ request.GET.tag }}{% endif %} {% if request.GET.year %}&year={{ request.GET.year }}{% endif %}{% if request.GET.month %}&month={{ request.GET.month }}{% endif %}">&laquo;上一页</a></li>
+    {% else %}
+    <li class="previous-off">&laquo;上一页</li>
+    {% endif %}
+     <li class="active">{{ Article_list.number }}/{{ Article_list.paginator.num_pages }}</li>
+    {% if Article_list.has_next %}
+      <li class="next"><a href="?page={{ Article_list.next_page_number }} {% if request.GET.tag %}&tag={{ request.GET.tag }}{% endif %} {% if request.GET.year %}&year={{ request.GET.year }}{% endif %}{% if request.GET.month %}&month={{ request.GET.month }}{% endif %}">下一页 &raquo;</a></li>
+    {% else %}
+      <li class="next-off">下一页 &raquo;</li>
+    {% endif %}
+   </ul>
+</div>

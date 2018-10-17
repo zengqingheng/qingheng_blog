@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block left_content %}
+    {% include 'ad.html' %}
+    <!-- banner代码 结束 -->
+    <div class="topnews">
+      <h2>{{ request.GET.tag }}归档文章</h2>
+        {% for Article in Article_list %}
+            <div class="blogs">
+            <ul>
+            <h3><a href="/">{{ Article.title }}</a></h3>
+            <p>{{ Article.desc }}</p>
+            <p class="autor"><span class="lm f_l">{% for tag in Article.tag.all %}<a href="/">{{ tag.name }}</a>{% endfor %}</span>
+                <span class="dtime f_l">{{ Article.date_publish | date:'Y-m-d' }}</span>
+                <span class="viewnum f_r">浏览（<a href="/">{{ Article.click_count }}</a>）</span>
+                <span class="pingl f_r">评论（<a href="/">{{ Article.comment_set.all.count }}</a>）</span>
+            </p>
+            </ul>
+            </div>
+        {% endfor %}
+    </div>
+    {% include 'pagination.html' %}
+{% endblock %}
